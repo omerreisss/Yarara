@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= forum.title %> - Forum</title>
+</head>
+<body>
+  <h1><%= forum.title %> Forumuna Hoş Geldiniz</h1>
+
+  <% if (currentUser) { %>
+    <h3>Yeni Post Ekle</h3>
+    <form action="/forum/<%= forum._id %>" method="POST" enctype="multipart/form-data">
+      <textarea name="content" placeholder="Post içeriğinizi buraya yazın..." required></textarea><br>
+      <input type="file" name="image"><br>
+      <button type="submit">Post Ekle</button>
+    </form>
+  <% } %>
+
+  <h2>Postlar</h2>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <p><%= post.content %></p>
+        <% if (post.image) { %>
+          <img src="<%= post.image %>" alt="Post Resmi" width="100px">
+        <% } %>
+        <p>Yazan: <%= post.author.username %></p>
+        
+        <% if (currentUser) { %>
+          <form action="/post/<%= post._id %>/comment" method="POST">
+            <textarea name="comment" placeholder="Yorum yap..." required></textarea><br>
+            <button type="submit">Yorum Yap</button>
+          </form>
+        <% } %>
+
+        <h3>Yorumlar</h3>
+        <ul>
+          <% post.comments.forEach(comment => { %>
+            <li>
+              <p><%= comment.content %> - <%= comment.author.username %></p>
+            </li>
+          <% }) %>
+        </ul>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

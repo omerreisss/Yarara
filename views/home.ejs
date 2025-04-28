@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worsebox - Ana Sayfa</title>
+</head>
+<body>
+  <h1>Worsebox - Forumlar</h1>
+  <% if (currentUser) { %>
+    <p>Hoş geldiniz, <%= currentUser.username %>!</p>
+    <a href="/logout">Çıkış Yap</a>
+  <% } else { %>
+    <a href="/login">Giriş Yap</a> | <a href="/register">Kayıt Ol</a>
+  <% } %>
+
+  <h2>Forumlar</h2>
+  <ul>
+    <% forums.forEach(forum => { %>
+      <li>
+        <a href="/forum/<%= forum._id %>"><%= forum.title %></a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

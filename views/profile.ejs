@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Profilim</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <h1>Profilim</h1>
+  <img src="<%= user.pfp %>" alt="Profil Fotoğrafı" width="100px">
+  <p>Kullanıcı Adı: <%= user.username %></p>
+  <p>E-posta: <%= user.email %></p>
+
+  <form action="/profile" method="POST" enctype="multipart/form-data">
+    <label for="username">Yeni Kullanıcı Adı:</label>
+    <input type="text" name="username" value="<%= user.username %>">
+    
+    <label for="pfp">Profil Fotoğrafı:</label>
+    <input type="file" name="pfp">
+    
+    <button type="submit">Güncelle</button>
+  </form>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

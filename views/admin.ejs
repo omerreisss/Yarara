@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Paneli</title>
+</head>
+<body>
+  <h1>Admin Paneli</h1>
+
+  <h2>Forumlar</h2>
+  <ul>
+    <% forums.forEach(forum => { %>
+      <li>
+        <%= forum.title %> 
+        <form action="/admin/forum/<%= forum._id %>/delete" method="POST" style="display:inline;">
+          <button type="submit">Sil</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+
+  <h3>Yeni Forum Oluştur</h3>
+  <form action="/admin/forum" method="POST">
+    <label for="title">Forum Başlığı:</label>
+    <input type="text" name="title" required><br>
+    <button type="submit">Oluştur</button>
+  </form>
+</body>
+</html>

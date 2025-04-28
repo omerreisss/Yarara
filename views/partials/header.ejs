@@ -1,0 +1,18 @@
+<header>
+  <h1>Worsebox</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Ana Sayfa</a></li>
+      <% if (!currentUser) { %>
+        <li><a href="/login">Giriş Yap</a></li>
+        <li><a href="/register">Kayıt Ol</a></li>
+      <% } else { %>
+        <li><a href="/profile">Profilim</a></li>
+        <% if (isAdmin) { %>
+          <li><a href="/admin">Admin Paneli</a></li>
+        <% } %>
+        <li><a href="/logout">Çıkış Yap</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>
